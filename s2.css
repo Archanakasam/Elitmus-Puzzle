@@ -1,0 +1,14 @@
+body{
+    background-image: url('bg1img.jpg');
+    /* background-color: rgb(102, 199, 199); */
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:400px;
+    height:600px;
+}
+p, h3{
+    color: aliceblue;
+}

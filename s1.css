@@ -1,0 +1,18 @@
+body{
+  background-image: url('bg5img.jpg');
+}
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: rgb(213, 209, 236);
+  padding: 10px;
+}
+.btngrd {
+    /* display:grid;
+    grid-template-columns: 1fr, 1fr; */
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 10px;
+    
+}
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Puzzle</title>
+        <link rel="stylesheet" href="s1.css">
+    </head>
+    <body>
+        <div class="content">
+        <h1>Welcome!!...</h1>
+        <h3>Instructions for the puzzle!</h3>
+        <p>
+          1. Once you start the game, a single image will be displayed on the screen for 10 sec only.<br>
+          2. Observe the image carefully and answer the questions which are followed.<br>
+          3. You can take the hints for cracking the answers. <br>
+          4. The image can be replayed again only once.<br>
+          5. The Critical Thinking skills are assessed based on the number of times the hints are opted and replays are opted.
+          <br>
+          <br>
+          Now we are all ready for the game.<br>
+          Let's dive into it!<br>
+        </p>
+        <!-- <button id = "start" type="button" onclick="alert('An image will be displayed for 10 sec only!!')">Start</button> -->
+        <button id = "start" onclick="window.location.href = 'page1.html';">Start</button>
+
+        </div>
+        <div id="logout" >
+          <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+          </a>
+        </div>
+  
+    </body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+           import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+           import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+           // TODO: Add SDKs for Firebase products that you want to use
+           // https://firebase.google.com/docs/web/setup#available-libraries
+         
+           // Your web app's Firebase configuration
+      const firebaseConfig = {
+      apiKey: "AIzaSyDKECLFnVSOx_UCLEU8-jHBkqtTqkegyT0",
+      authDomain: "puzzle-b915c.firebaseapp.com",
+      databaseURL: "https://puzzle-b915c-default-rtdb.firebaseio.com",
+      projectId: "puzzle-b915c",
+      storageBucket: "puzzle-b915c.appspot.com",
+      messagingSenderId: "1080727620162",
+      appId: "1:1080727620162:web:9cdc649a43952c61b7bbdb"
+    };
+         
+           // Initialize Firebase
+           const app = initializeApp(firebaseConfig);
+           const database = getDatabase(app);
+           const auth = getAuth();
+           const user = auth.currentUser;
+         onAuthStateChanged(auth, (user) => {
+           if (user) {
+             // User is signed in, see docs for a list of available properties
+             // https://firebase.google.com/docs/reference/js/firebase.User
+             const uid = user.uid;
+             // ...
+           } else {
+             // User is signed out
+             // ...
+             window.location ="index.html";
+           }
+         });
+        logout.addEventListener('click',(e)=>{
+         
+         signOut(auth).then(() => {
+           // Sign-out successful.
+           alert('user loged out');
+         }).catch((error) => {
+           // An error happened.
+           const errorCode = error.code;
+           const errorMessage = error.message;
+      
+              alert(errorMessage);
+         });
+      
+      });
+   </script>
+</html>

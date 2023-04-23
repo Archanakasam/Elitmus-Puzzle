@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="s2.css">
+   </head>
+   <body>
+
+    <img id = "1" src="img1.jpg" alt="Question" style="width:50%">
+    <button id = "replay" type="button" >Replay Image</button>
+    <div id = "2" class="grd1">
+        <h3>Question 1:</h3>
+        <p>When did the people in the picture got Independence??(Month)</p>
+        <div class = "btngrd">
+          <button onclick="hint1()" type="button">Hint</button>
+          <input id = "11" type="text" placeholder="answer">
+          <button onclick = "e1()" type = "button">Submit</button>
+        </div>
+    </div>
+
+    <div id = "3" class="grd1">
+      <h3>Question 2:</h3>
+      <p>I'm happy inside. If i come out i will be eaten. What am I?</p>
+      <div class = "btngrd">
+        <button onclick="hint3()" type="button">Hint</button>
+        <input id = "12" type="text" placeholder="answer">
+        <button onclick = "e2()" type = "button">Submit</button>
+      </div>
+  </div>
+
+  <div id = "4" class="grd1">
+    <h3>Question 3:</h3>
+    <p>I'm a cause for sound pollution. Guess what am I?</p>
+    <div class = "btngrd">
+      <button onclick="hint4()" type="button">Hint</button>
+      <input id = "13" type="text" placeholder="answer">
+      <button onclick = "e3()" type = "button">Submit</button>
+    </div>
+</div>
+
+<div id = "5" class="grd1">
+  <h3>Question 4:</h3>
+  <p>People in the picture belongs to which country?</p>
+  <div class = "btngrd">
+    <button onclick="hint2()" type="button">Hint</button>
+    <input id = "14" type="text" placeholder="answer">
+    <button onclick = "e4()" type = "button">Submit</button>
+  </div>
+</div>
+
+<div id = "6" class="grd1">
+  <h3>Question 5:</h3>
+  <p>I'm a combination of all veggies? who am I?</p>
+  <div class = "btngrd">
+    <button onclick="hint5()" type="button">Hint</button>
+    <input id = "15" type="text" placeholder="answer">
+    <button onclick = "e5()" type = "button">Submit</button>
+  </div>
+</div>
+<br><br>
+<button onclick="load()" type="button">End Game</button>
+<!-- <p id = "ss"></p> -->
+
+
+
+</body>
+<script>
+  var hint = 0;
+    setTimeout(
+    function() {
+    document.getElementById('1').style.display='none'
+    }, 10*1000);
+
+    // function question()
+    // {
+    //   document.getElementById('2').style.display='none';
+    // }
+    function hint1()
+    {
+      alert("Trees gives us shelter. Am i right?");
+      hint = hint+1;
+      
+    }
+    function hint2()
+    {
+      alert("Its a largest Mac headquatered country.");
+      hint = hint+1;
+    }
+    function hint3()
+    {
+      alert("Its the water where i live in.");
+      hint = hint+1;
+    }
+    function hint4()
+    {
+      alert("We celebrate the festive of lights.");
+      hint = hint+1;
+    }
+    function hint5()
+    {
+      alert("Am i Junk??");
+      hint = hint+1;
+    }
+
+    var repc = 0;
+    const showImageButton = document.getElementById("replay");
+      const myImage = document.getElementById('1'); 
+      showImageButton.addEventListener("click", () => { 
+      myImage.style.display = "block"; 
+      setTimeout(
+      function() {
+      document.getElementById('1').style.display='none'
+      repc = repc+1;
+      }, 10*1000);
+      }); 
+    var answer = 0;
+    function e1()
+    {
+      var ans = document.getElementById('11').value;
+      if(ans == 'july' || ans == 'July')
+      {
+        alert('You are right! Keep up your pace!');
+        answer = answer + 1;
+      }
+      else
+      {
+        alert('Oh No! Its Incorrect. Try Again!')
+      }
+    }
+    function e2()
+    {
+      var ans = document.getElementById('12').value;
+      if(ans == 'fish' || ans == 'Fish')
+      {
+        alert('You are right! Keep up your pace!');
+        answer = answer + 1;
+      }
+      else
+      {
+        alert('Oh No! Its Incorrect. Try Again!')
+      }
+    }
+    function e3()
+    {
+      var ans = document.getElementById('13').value;
+      if(ans == 'crackers' || ans == 'fire crackers' || ans == 'bomb' || ans == "bombs")
+      {
+        alert('You are right! Keep up your pace!');
+        answer = answer + 1;
+      }
+      else
+      {
+        alert('Oh No! Its Incorrect. Try Again!')
+      }
+    }
+    function e4()
+    {
+      var ans = document.getElementById('14').value;
+      if(ans == 'USA' || ans == 'US' || ans =='us' || ans == 'usa' || ans == 'United States Of America' || ans == 'america' || ans == 'America')
+      {
+        alert('You are right! Keep up your pace!');
+        answer = answer + 1;
+      }
+      else
+      {
+        alert('Oh No! Its Incorrect. Try Again!')
+      }
+    }
+    function e5()
+    {
+      var ans = document.getElementById('15').value;
+      if(ans == 'Burger' || ans == 'Ham Burger' || ans == 'burger')
+      {
+        alert('You are right! Keep up your pace!');
+        answer = answer + 1;
+      }
+      else
+      {
+        alert('Oh No! Its Incorrect. Try Again!')
+      }
+    }
+
+    // if(res > 30 && res < 40)
+    // {
+    //   res = 35;
+    // }
+    // if(res > 0 && res <= 30)
+    // {
+    //   res = 20;
+    // }
+    // document.write(res);
+    function load()
+    {
+      var result = (answer*20) - (hint*5) - (repc*7);
+      document.write('Your Critical Thinking Skills are assessed!!');
+      document.write('Its' + ' ' + result + '%'); 
+      // window.location = "index1.html";
+    }
+    
+    </script>
+</html>
