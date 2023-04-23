@@ -5,8 +5,9 @@ From this puzzle i tried to assess the CRITICAL THINKING SKILLS of the user thro
 
 A single image is given in the puzzle. This image is displayed only for 10 seconds.
 The user can also avail the replay button for the image. But doing this will effect their score in the soft skills. 
-**
-Criteria for calculating the critical Thinking Skills:**
+
+
+Criteria for calculating the critical Thinking Skills:
 The image is followed by 5 questions.
 
 For every correct answer, the user will be awarde with 20 marks.
