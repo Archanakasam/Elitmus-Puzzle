@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Welcome</title>
+      <link rel="stylesheet" href="style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Login Form
+            </div>
+            <div class="title signup">
+               Signup Form
+            </div>
+         </div>
+         <div class="form-container">
+            <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <input type="radio" name="slide" id="signup">
+               <label for="login" class="slide login">Login</label>
+               <label for="signup" class="slide signup">Signup</label>
+               <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+               <form action="#" class="login">
+                  <div class="field">
+                     <input type="text" id = "lemail" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" id = "lpassword" placeholder="Password" required>
+                  </div>
+                  <div class="pass-link">
+                     <a href="#">Forgot password?</a>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input id = "loginid" type="submit" value="Login">
+                  </div>
+                  <div class="signup-link">
+                     Not a member? <a href="">Signup now</a>
+                  </div>
+               </form>
+               <form action="#" class="signup">
+                  <div class="field">
+                     <input type="text" id = "email" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                     <input type="text" id = "username" placeholder="Name" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" id = "password" placeholder="Password" required>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input id = "signUp" type="submit" value="Signup">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script>
+         const loginText = document.querySelector(".title-text .login");
+         const loginForm = document.querySelector("form.login");
+         const loginBtn = document.querySelector("label.login");
+         const signupBtn = document.querySelector("label.signup");
+         const signupLink = document.querySelector("form .signup-link a");
+         signupBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "-50%";
+           loginText.style.marginLeft = "-50%";
+         });
+         loginBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "0%";
+           loginText.style.marginLeft = "0%";
+         });
+         signupLink.onclick = (()=>{
+           signupBtn.click();
+           return false;
+         });
+      </script>
+   </body>
+   <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDKECLFnVSOx_UCLEU8-jHBkqtTqkegyT0",
+      authDomain: "puzzle-b915c.firebaseapp.com",
+      databaseURL: "https://puzzle-b915c-default-rtdb.firebaseio.com",
+      projectId: "puzzle-b915c",
+      storageBucket: "puzzle-b915c.appspot.com",
+      messagingSenderId: "1080727620162",
+      appId: "1:1080727620162:web:9cdc649a43952c61b7bbdb"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    signUp.addEventListener('click',(e) => {
+
+        var email = document.getElementById('email').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        set(ref(database, 'users/' + user.uid),{
+            username: username,
+            email: email
+        })
+        alert('user created');
+        // ...
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+        // ..
+        });
+
+    });
+
+loginid.addEventListener('click',(e) => {
+    var lemail = document.getElementById('lemail').value;
+    var lpassword = document.getElementById('lpassword').value;
+
+
+    signInWithEmailAndPassword(auth, lemail, lpassword)
+    .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    const dt = new Date();
+    update(ref(database, 'users/' + user.uid),{
+            last_login: dt
+    })
+
+    alert('User Logged In!!');
+    // ...
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    });
+});
+
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    window.location ="index1.html";
+
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+
+// logout.addEventListener('click',(e)=>{
+//     signOut(auth).then(() => {
+//     // Sign-out successful.
+//     alert('user logged out!!');
+//     }).catch((error) => {
+//     // An error happened.
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     alert(errorMessage);
+//     });
+// });
+   
+  </script>
+</html>
